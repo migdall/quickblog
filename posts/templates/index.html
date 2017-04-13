@@ -31,8 +31,12 @@
   <br>
   {% for post in posts %}
   <div>{{ post.title }}</div>
+  {% if post.image %}
   <div><img class="post-image" src="/media/{{ post.image }}"></div>
+  {% endif %}
+  {% if post.description %}
   <div>{{ post.description }}</div>
+  {% endif %}
   {% endfor %}
 </body>
 </html>

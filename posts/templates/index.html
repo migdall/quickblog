@@ -13,7 +13,7 @@
   <br>
   {% if request.user.person.editor %}
   <div id="new-post-div">New Post</div>
-  <form id="new-post-form" enctype="multipart/form-data" style="display: none;" method="post" action="/posts/create/">
+  <form id="new-post-form" enctype="multipart/form-data" method="post" action="/posts/create/">
     <label>Upload a new post</label>
     <br>
     <input type="text" name="title">

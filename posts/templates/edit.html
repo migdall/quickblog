@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <title>Posts Main Page</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/js/ready.js"></script>
+</head>
+
+<body>
+  <a href="/posts/">Main</a>&nbsp;&nbsp;<a href="/posts/logout">Logout</a>
+  <br>
+  <br>
+  {% if request.user.person.editor %}
+  <form id="edit-post-form" enctype="multipart/form-data" method="post">
+    <label>Upload a new post</label>
+    <br>
+    <input type="text" name="title" value="{{ post.title }}">
+    <br>
+    <input name="image" type="file">
+    <br>
+    <input type="text" name="description" value="{{ post.description }}">
+    <br>
+    <input type="submit" value="Save Post">
+  </form>
+  <br>
+  {% endif %}
+</body>
+</html>

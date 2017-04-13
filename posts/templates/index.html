@@ -30,6 +30,7 @@
   <br>
   <br>
   {% for post in posts %}
+  <div class="post-container">
   <div>{{ post.title }}</div>
   {% if post.image %}
   <div><img class="post-image" src="/media/{{ post.image }}"></div>
@@ -37,6 +38,12 @@
   {% if post.description %}
   <div>{{ post.description }}</div>
   {% endif %}
+  {% if request.user.person.editor %}
+  <a class="post-edit-link" href="/posts/{{ post.id }}/edit">Edit</a>
+  <a class="post-delete-link" href="/posts/{{ post.id }}/delete">Delete</a>
+  {% endif %}
+  <!-- End of container -->
+  </div>
   {% endfor %}
 </body>
 </html>

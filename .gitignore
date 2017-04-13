@@ -2,3 +2,4 @@ quickblog/__pycache__/
 quickblog/settings.py
 quickblogenv/
 static/admin/
+posts/__pycache__/

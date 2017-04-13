@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 
-from .models import Person
+from .models import Person, Post
 
 # Register your models here.
 
@@ -13,4 +13,5 @@ class PersonInline(admin.StackedInline):
 # Register
 
 admin.site.register(Person)
+admin.site.register(Post)
 

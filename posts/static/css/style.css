@@ -1,0 +1,16 @@
+/* Styles for posts */
+
+div#new-post-div {
+    color: red;
+    cursor: pointer;
+}
+
+form#new-post-form {
+    display: none;
+}
+
+img.post-image {
+    width: 200px;
+    height: 200px;
+}
+

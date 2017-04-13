@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import auth
 
+from .models import Post, PostForm
+
 # Create your views here.
 
 @csrf_exempt
@@ -12,7 +14,8 @@ def logout(request):
 @csrf_exempt
 def index(request):
     if request.user.is_authenticated():
-        return render(request, 'index.html', {})
+        posts_list = Post.objects.all()
+        return render(request, 'index.html', {'posts': posts_list})
     return redirect( '/posts/login/' )
 
 @csrf_exempt
@@ -28,4 +31,14 @@ def login(request):
             return redirect( '/posts/' )
 
     return render(request, 'login.html', {})
+
+@csrf_exempt
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save()
+            post.author = request.user.person
+            post.save()
+            return redirect( '/posts/' )
 

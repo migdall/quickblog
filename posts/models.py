@@ -10,7 +10,12 @@ class Person(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=30)
-    description = models.CharField(max_length=100)
-    image = models.FileField(upload_to='uploads/images/')
-    author = models.ForeignKey(Person, on_delete=models.CASCADE)
+    description = models.CharField(max_length=100, null=True)
+    image = models.FileField(upload_to='uploads/images/', null=True)
+    author = models.ForeignKey(Person, on_delete=models.CASCADE, null=True)
+
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'description', 'image']
 

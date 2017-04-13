@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang=en>
 <head>
+  <title>Posts Main Page</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/js/ready.js"></script>
 </head>
 
 <body>
@@ -8,8 +12,27 @@
   <br>
   <br>
   {% if request.user.person.editor %}
-  <div>New Post</div>
+  <div id="new-post-div">New Post</div>
+  <form id="new-post-form" enctype="multipart/form-data" style="display: none;" method="post" action="/posts/create/">
+    <label>Upload a new post</label>
+    <br>
+    <input type="text" name="title">
+    <br>
+    <input name="image" type="file">
+    <br>
+    <input type="text" name="description">
+    <br>
+    <input type="submit" value="Save Post">
+  </form>
+  <br>
   {% endif %}
   <div>Welcome to Quick Blog! You are logged in.</div>
+  <br>
+  <br>
+  {% for post in posts %}
+  <div>{{ post.title }}</div>
+  <div><img class="post-image" src="/media/{{ post.image }}"></div>
+  <div>{{ post.description }}</div>
+  {% endfor %}
 </body>
 </html>

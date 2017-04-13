@@ -7,6 +7,9 @@
   <a href="/posts/logout">Logout</a>
   <br>
   <br>
+  {% if request.user.person.editor %}
+  <div>New Post</div>
+  {% endif %}
   <div>Welcome to Quick Blog! You are logged in.</div>
 </body>
 </html>

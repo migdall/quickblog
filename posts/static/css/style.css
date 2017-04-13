@@ -26,6 +26,9 @@ img.post-image {
 		-ms-justify-content: space-between;
 		justify-content: space-between;
 		position: relative;
+        -webkit-column-count: 3; /* Chrome, Safari, Opera */
+        -moz-column-count: 3; /* Firefox */
+        column-count: 3;
 	}
 
 		.features > section {

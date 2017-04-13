@@ -33,7 +33,11 @@
   <br>
   <div class="features">
   {% for post in posts %}
-  <div class="post-container post-wrapper">
+  {% if forloop.counter|divisibleby:3 %}
+  <div class="post-container post-wrapper" style="float:none;">
+  {% else %}
+  <div class="post-container post-wrapper feature-item">
+  {% endif %}
   <div>{{ post.title }}</div>
   {% if post.image %}
   <div><img class="post-image" src="/media/{{ post.image }}"></div>

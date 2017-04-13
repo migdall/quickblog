@@ -31,8 +31,9 @@
   <div>Welcome to Quick Blog! You are logged in.</div>
   <br>
   <br>
+  <div class="features">
   {% for post in posts %}
-  <div class="post-container">
+  <div class="post-container post-wrapper">
   <div>{{ post.title }}</div>
   {% if post.image %}
   <div><img class="post-image" src="/media/{{ post.image }}"></div>
@@ -47,5 +48,7 @@
   <!-- End of container -->
   </div>
   {% endfor %}
+  <!-- End of features -->
+  </div>
 </body>
 </html>

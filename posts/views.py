@@ -41,4 +41,5 @@ def create_post(request):
             post.author = request.user.person
             post.save()
             return redirect( '/posts/' )
+        return redirect( '/posts/' )
 

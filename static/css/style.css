@@ -56,3 +56,22 @@ h2 {
 	-moz-transform: translate(-50%, -50%);
 	z-index: 5;
 }
+
+#your_name_start_form_submit_button {
+    margin: auto;
+}
+
+#your_name_input {
+    display: block;
+    margin: 0 auto 1em;
+    background: transparent;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-size: 24px;
+    width: 125px;
+}
+
+#your_name_start_form_h2 {
+    text-align: center;
+}

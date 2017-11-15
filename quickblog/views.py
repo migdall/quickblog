@@ -1,7 +1,8 @@
 # Views for the quickblog project
 
-from django.http import HttpResponse
+from django.shortcuts import render
+
 
 def index(request):
-    return HttpResponse("Welcome to the Quick Blog!<br><br><a href='/posts/login/'>Login</a>")
-
+    context = {}
+    return render(request, 'index.html', context)

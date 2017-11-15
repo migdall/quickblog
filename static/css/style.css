@@ -43,3 +43,16 @@ h2 {
   clear: both;
   padding-top: 10px;
 }
+
+#your_name_start_form {
+	position: fixed;
+	text-align: left;
+	width: 80%;
+	max-width: 350px;
+	left: 50%;
+	top: 48%;
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	z-index: 5;
+}

@@ -45,12 +45,16 @@ function stop(stream) {
 }
 
 function alertContents() {
-    if (httpRequest.readyState === XMLHttpRequest.DONE) {
-        if (httpRequest.status === 200) {
-            alert(httpRequest.responseText);
-        } else {
-            alert(httpRequest.responseText);
+    try {
+        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+            if (httpRequest.status === 200) {
+                alert(httpRequest.responseText);
+            } else {
+                alert('There was a problem with the request.');
+            }
         }
+    } catch (e) {
+        alert('Caught Exception: ' + e.description);
     }
 }
 

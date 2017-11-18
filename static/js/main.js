@@ -57,6 +57,12 @@ startButton.addEventListener("click", function() {
                 type: "video/webm"
             });
             recording.src = URL.createObjectURL(recordedBlob);
+            var form = document.getElementById('send_recording_form');
+            var o_data = new FormData(form);
+            o_data.set('recording', recordedBlob, 'recording_' + Math.floor(Math.random() * 2000000 + 1));
+            var request = new XMLHttpRequest();
+            request.open("POST", form.action);
+            request.send(o_data);
             //downloadButton.href = recording.src;
             //downloadButton.download = "RecordedVideo.webm";
 

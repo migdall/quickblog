@@ -26,6 +26,12 @@
     <div class="bottom">
         <pre id="log"></pre>
     </div>
+
+    <form id="send_recording_form" action="/sayings/{{ saying.id }}/questions/{{ question.id }}/answer/" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <input id="send_recording_file" type="file" name="recording">
+        <input type="submit" value="Next Quest!" disabled>
+    </form>
+
     <script src="/static/js/main.js"></script>
 </body>
 </html>

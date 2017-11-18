@@ -2,6 +2,8 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render, redirect
 from .models import Question, Answer, Hero, Saying
 
+import boto3
+
 # Create your views here.
 
 
@@ -42,4 +44,12 @@ def get_question(request, saying_id, question_id):
         c['saying'] = saying
         c['hero'] = hero
         return render(request, 'question.html', c)
+
+
+def new_answer(request, saying_id, question_id):
+    if request.POST and request.is_ajax():
+        s3 = boto3.resource('s3')
+        s3.Object('sayings.answers', 'firstvid.webm').put(request.FILES.get('recording'))
+        saying = Saying.objects.get(id=saying_id)
+        return redirect('/sayings/%s/questions/2/' % str(saying_id))
 

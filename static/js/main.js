@@ -1,8 +1,8 @@
 let preview = document.getElementById("preview");
 let recording = document.getElementById("recording");
 let startButton = document.getElementById("startButton");
-//let stopButton = document.getElementById("stopButton");
-//let downloadButton = document.getElementById("downloadButton");
+let stopButton = document.getElementById("stopButton");
+let downloadButton = document.getElementById("downloadButton");
 let logElement = document.getElementById("log");
 var httpRequest = new XMLHttpRequest();
 
@@ -64,7 +64,7 @@ startButton.addEventListener("click", function() {
             audio: true
         }).then(stream => {
             preview.srcObject = stream;
-            //downloadButton.href = stream;
+            downloadButton.href = stream;
             preview.captureStream = preview.captureStream || preview.mozCaptureStream;
             return new Promise(resolve => preview.onplaying = resolve);
         }).then(() => startRecording(preview.captureStream(), recordingTimeMS))
@@ -73,14 +73,8 @@ startButton.addEventListener("click", function() {
                 type: "video/webm"
             });
             recording.src = URL.createObjectURL(recordedBlob);
-            var form = document.getElementById('send_recording_form');
-            var o_data = new FormData(form);
-            o_data.set('recording', recordedBlob, 'recording_' + Math.floor(Math.random() * 2000000 + 1));
-            httpRequest.onreadystatechange = alertContents;
-            httpRequest.open("POST", form.action);
-            httpRequest.send(o_data);
-            //downloadButton.href = recording.src;
-            //downloadButton.download = "RecordedVideo.webm";
+            downloadButton.href = recording.src;
+            downloadButton.download = "RecordedVideo.webm";
 
             log("Successfully recorded " + recordedBlob.size + " bytes of " +
                 recordedBlob.type + " media.");

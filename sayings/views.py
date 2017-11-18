@@ -46,6 +46,10 @@ def get_question(request, saying_id, question_id):
         c['hero'] = hero
         c['next'] = int(question.id) + 1
         return render(request, 'question.html', c)
+    else:
+        c['saying'] = saying
+        c['hero'] = hero
+        return render(request, 'done.html', c)
 
 
 def new_answer(request, saying_id, question_id):

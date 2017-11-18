@@ -27,6 +27,6 @@ class Saying(models.Model):
     first_name = models.CharField(max_length=50)
     created = models.DateTimeField(auto_now_add=True)
     completed = models.DateTimeField(auto_now=True)
-    hero = models.ForeignKey(Hero)
-    answers = models.ManyToManyField(Answer)
+    hero = models.ForeignKey(Hero, null=True, blank=True)
+    answers = models.ManyToManyField(Answer, blank=True)
 

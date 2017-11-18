@@ -11,7 +11,7 @@ class Person(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=100, null=True, blank=True)
-    image = models.FileField(upload_to='uploads/images/')
+    image = models.FileField(upload_to='uploads/images/', null=True, blank=True)
     author = models.ForeignKey(Person, on_delete=models.CASCADE, null=True)
 
 class PostForm(ModelForm):

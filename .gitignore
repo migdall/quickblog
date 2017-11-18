@@ -1,3 +1,4 @@
+*.pyc
 quickblog/__pycache__/
 quickblog/settings.py
 quickblogenv/

@@ -52,7 +52,7 @@ def new_answer(request, saying_id, question_id):
         s3 = boto3.resource('s3')
         s3.Object('sayings.answers', 'firstvid.webm').put(request.FILES.get('recording'))
         data = new_recording_upload.read()
-        build_key_string = "sayings/%s" % new_recording_upload.name)
+        build_key_string = "sayings/%s" % new_recording_upload.name
         return_s3_object=s3.Bucket('sayings.answers').put_object(
             Key = build_key_string, Body = data, ContentType = new_recording_upload.content_type)
         return_s3_object.Acl().put(ACL = 'public-read')

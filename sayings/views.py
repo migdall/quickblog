@@ -49,7 +49,10 @@ def get_question(request, saying_id, question_id):
 
 def new_answer(request, saying_id, question_id):
     if request.POST and request.is_ajax():
-        return JsonResponse({}, status=200)
+        try:
+            return JsonResponse({}, status=200)
+        except:
+            return JsonResponse({"something went wrong"}, status=400)
         new_recording_upload = request.FILES.get("recording")
         s3 = boto3.resource('s3')
         s3.Object('sayings.answers', 'firstvid.webm').put(request.FILES.get('recording'))

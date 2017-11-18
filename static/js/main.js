@@ -4,6 +4,7 @@ let startButton = document.getElementById("startButton");
 //let stopButton = document.getElementById("stopButton");
 //let downloadButton = document.getElementById("downloadButton");
 let logElement = document.getElementById("log");
+var httpRequest = new XMLHttpRequest();
 
 let recordingTimeMS = 20000;
 
@@ -42,6 +43,17 @@ function startRecording(stream, lengthInMS) {
 function stop(stream) {
     stream.getTracks().forEach(track => track.stop());
 }
+
+function alertContents() {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+        if (httpRequest.status === 200) {
+            alert(httpRequest.responseText);
+        } else {
+            alert(httpRequest.responseText);
+        }
+    }
+}
+
 startButton.addEventListener("click", function() {
     navigator.mediaDevices.getUserMedia({
             video: true,
@@ -60,7 +72,7 @@ startButton.addEventListener("click", function() {
             var form = document.getElementById('send_recording_form');
             var o_data = new FormData(form);
             o_data.set('recording', recordedBlob, 'recording_' + Math.floor(Math.random() * 2000000 + 1));
-            var request = new XMLHttpRequest();
+            request.onreadystatechange = alertContents;
             request.open("POST", form.action);
             request.send(o_data);
             //downloadButton.href = recording.src;

@@ -27,7 +27,7 @@
         <input id="saying_id_input" type="hidden" value="{{ saying.id }}">
         <input id="question_id_input" type="hidden" value="{{ next }}/">
         <br>
-        <button id="next_question_button" href="/sayings/{{ saying.id }}/questions/{{ next }}/">Next Question</button>
+        <a id="next_question_button" href="/sayings/{{ saying.id }}/questions/{{ next }}/" class="button">Next Question</a>
     </div>
     <div class="bottom">
         <pre id="log"></pre>

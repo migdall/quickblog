@@ -13,10 +13,11 @@ def new_saying(request):
         return redirect('/sayings/%s/hero/' % str(new_saying.id))
 
 
-@csrf_protect
 def set_hero(request, saying_id):
     c = {}
     saying = Saying.objects.get(id=saying_id)
+    heroes = Hero.objects.all()
     c['saying'] = saying
+    c['heroes'] = heroes
     return render(request, 'hero.html', c)
 

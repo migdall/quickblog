@@ -8,11 +8,14 @@
 </head>
 
 <body>
-    <form id="your_name_start_form" action="/sayings/saying/add/" method="post"  autocomplete="off">{% csrf_token %}
-        <h2 id="your_name_start_form_h2">What's your name?</h2>
+    <form id="pick_hero_form" action="/sayings/{{ saying.id }}/hero/" method="post"  autocomplete="off">{% csrf_token %}
+        <h2 id="pick_hero_form_h2">Pick your hero</h2>
         <br>
-		<input id="your_name_input" type="text" placeholder="First name" name="firstname" />
-		<input id="your_name_start_form_submit_button" type="submit" value="Let's begin" class="button">
+        {% for hero in heroes %}
+        <input type="radio" name="hero" value="{{ hero.id }}">
+        <img src="{{ hero.image_url }}" width="640" height="320">
+        {% endfor %}
+	<input id="your_name_start_form_submit_button" type="submit" value="Choose" class="button">
 	</form>
 </body>
 </html>

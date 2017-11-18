@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import Question, Answer, Hero, Saying
 
 import boto3
@@ -49,7 +49,7 @@ def get_question(request, saying_id, question_id):
 
 def new_answer(request, saying_id, question_id):
     if request.POST and request.is_ajax():
-        return HttpResponse("success")
+        return JsonResponse({}, status=200)
         new_recording_upload = request.FILES.get("recording")
         s3 = boto3.resource('s3')
         s3.Object('sayings.answers', 'firstvid.webm').put(request.FILES.get('recording'))

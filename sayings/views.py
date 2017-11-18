@@ -48,8 +48,22 @@ def get_question(request, saying_id, question_id):
 
 def new_answer(request, saying_id, question_id):
     if request.POST and request.is_ajax():
+        new_recording_upload = request.FILES.get("recording")
         s3 = boto3.resource('s3')
         s3.Object('sayings.answers', 'firstvid.webm').put(request.FILES.get('recording'))
-        saying = Saying.objects.get(id=saying_id)
-        return redirect('/sayings/%s/questions/2/' % str(saying_id))
+        data = new_recording_upload.read()
+        build_key_string = "sayings/%s" % new_recording_upload.name)
+        return_s3_object=s3.Bucket('sayings.answers').put_object(
+            Key = build_key_string, Body = data, ContentType = new_recording_upload.content_type)
+        return_s3_object.Acl().put(ACL = 'public-read')
+        s3_client=boto3.client('s3')
+        return_s3_object_url=s3_client.generate_presigned_url('get_object', Params = {
+            'Bucket': 'sayings.answers', 'Key': return_s3_object.key}).split("?")[0]
 
+        saying=Saying.objects.get(id = saying_id)
+
+        question=Question.objects.get(id = question_id)
+        answer=Answer.objects.create(recording_url = return_s3_object_url, question = question)
+        answer.save()
+        saying.answers.add(answer)
+        return redirect('/sayings/%s/questions/2/' % str(saying_id))

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <title>First Quest</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <form id="your_name_start_form" action="/sayings/saying/add/" method="post"  autocomplete="off">{% csrf_token %}
+        <h2 id="your_name_start_form_h2">What's your name?</h2>
+        <br>
+		<input id="your_name_input" type="text" placeholder="First name" name="firstname" />
+		<input id="your_name_start_form_submit_button" type="submit" value="Let's begin" class="button">
+	</form>
+</body>
+</html>

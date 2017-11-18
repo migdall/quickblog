@@ -72,15 +72,17 @@ startButton.addEventListener("click", function() {
             let recordedBlob = new Blob(recordedChunks, {
                 type: "video/webm"
             });
+            var saying_id = document.getElementById("saying_id_input").value;
+            var question_id = document.getElementById("question_id_input").value;
             recording.src = URL.createObjectURL(recordedBlob);
             downloadButton.href = recording.src;
-            downloadButton.download = "RecordedVideo.webm";
+            downloadButton.download = saying_id + "-" + question_id + ".webm";
 
             log("Successfully recorded " + recordedBlob.size + " bytes of " +
                 recordedBlob.type + " media.");
         })
         .catch(log);
 }, false);
-/*stopButton.addEventListener("click", function() {
+stopButton.addEventListener("click", function() {
     stop(preview.srcObject);
-}, false);*/
+}, false);

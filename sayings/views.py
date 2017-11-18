@@ -34,5 +34,12 @@ def set_hero(request, saying_id):
 def get_question(request, saying_id, question_id):
     c = {}
     saying = Saying.objects.get(id=saying_id)
-    return render(request, 'question.html', c)
+    hero = saying.hero
+    question = Question.objects.get(id=question_id)
+
+    if question and saying and hero:
+        c['question'] = question
+        c['saying'] = saying
+        c['hero'] = hero
+        return render(request, 'question.html', c)
 

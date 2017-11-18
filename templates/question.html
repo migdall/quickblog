@@ -8,11 +8,24 @@
 </head>
 
 <body>
-    <form id="your_name_start_form" action="/sayings/saying/add/" method="post"  autocomplete="off">{% csrf_token %}
-        <h2 id="your_name_start_form_h2">What's your name?</h2>
-        <br>
-		<input id="your_name_input" type="text" placeholder="First name" name="firstname" />
-		<input id="your_name_start_form_submit_button" type="submit" value="Let's begin" class="button">
-	</form>
+    <h2>Answer your quest</h2>
+    <img src="{{ hero.image_url }}" width="200" height="200">
+    <h2 style="color: blue;">Hey, {{ saying.first_name }}! {{ question.content }}</h2>
+    <!-- Learn about this code on MDN: https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Recording_a_media_element -->
+    <p>Click the "Start" button to begin video recording for a few seconds.</p>
+    <br>
+    <div class="left">
+        <div id="startButton" class="button">Start</div>
+        <h2>Preview</h2>
+        <video id="preview" width="160" height="120" autoplay muted></video>
+    </div>
+    <div class="right">
+        <h2>Recording</h2>
+        <video id="recording" width="160" height="120" controls></video>
+    </div>
+    <div class="bottom">
+        <pre id="log"></pre>
+    </div>
+    <script src="/static/js/main.js"></script>
 </body>
 </html>

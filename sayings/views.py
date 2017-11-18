@@ -44,6 +44,7 @@ def get_question(request, saying_id, question_id):
         c['question'] = question
         c['saying'] = saying
         c['hero'] = hero
+        c['next'] = int(question.id) + 1
         return render(request, 'question.html', c)
 
 

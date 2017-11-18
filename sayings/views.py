@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
@@ -38,15 +39,14 @@ def get_question(request, saying_id, question_id):
     c = {}
     saying = Saying.objects.get(id=saying_id)
     hero = saying.hero
-    question = Question.objects.get(id=question_id)
-
-    if question and saying and hero:
+    try:
+        question = Question.objects.get(id=question_id)
         c['question'] = question
         c['saying'] = saying
         c['hero'] = hero
         c['next'] = int(question.id) + 1
         return render(request, 'question.html', c)
-    else:
+    except ObjectDoesNotExist:
         c['saying'] = saying
         c['hero'] = hero
         return render(request, 'done.html', c)
